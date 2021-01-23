@@ -38,11 +38,11 @@ export default function getRandomEmoji(filter?: Filter) {
     return [groupName, filteredEmoji]
   }
 
-  // weigh each category by ln(emoji count) so that categories with more emoji have *somewhat*
+  // weigh each category as a function of its emoji count so that categories with more emoji have
   // better chance of being picked
   const entryToWeights = ([groupName, emoji]: GroupEntry): [GroupName, number] => [
     groupName,
-    Math.log(emoji.length),
+    Math.sqrt(emoji.length),
   ]
 
   const groupEntries = Object.entries(emojiGrouped) as GroupEntry[]
