@@ -1,15 +1,23 @@
-import { mapObjIndexed, prop } from "ramda"
-import { emoji } from "./emoji"
+import { join, map, max, pipe, prop, reduce, __ } from "ramda"
+import getRandomEmoji from "./getRandomEmoji"
 import rules from "./rules"
 import { getRandomElement } from "./utils"
 
-export default function generateSigil() {
-  const rule = getRandomElement(rules)
-  const filteredEmoji = mapObjIndexed((filterRule) => emoji.filter(filterRule), rule.filters ?? {})
-  const emojiUsed = Array.from({ length: rule.noOfEmojis }, (_, i) =>
-    getRandomElement(filteredEmoji?.[i] ?? emoji),
-  ).map(prop("emoji"))
-  const layout = rule.layout.map((row) => row.map((emojiIndex) => emojiUsed[emojiIndex]))
+const maxOfGrid = reduce(reduce<number, number>(max), -1)
 
-  return layout.map((row) => row.join("")).join("\n")
+export default function generateSigil(ruleName?: string) {
+  const rule = rules.find(({ name }) => name === ruleName)
+
+  if (ruleName && !rule) throw new Error("there is no rule named " + ruleName)
+
+  const selectedRule = rule ?? getRandomElement(rules)
+  const numberOfEmojis = maxOfGrid(selectedRule.layout) + 1
+  const emojiUsed = Array.from({ length: numberOfEmojis }, (_, i) =>
+    getRandomEmoji(selectedRule.filters?.[i]),
+  )
+  const populateLayout = map(map(prop(__, emojiUsed)))
+  const gridToString = pipe(map(join("")), join("\n"))
+
+  // console.log(selectedRule.name)
+  return gridToString(populateLayout(selectedRule.layout))
 }

@@ -1,39 +1,136 @@
-import { EmojiObject } from "./emoji"
+import { activity, background, Filter, subject } from "./filters"
 
 type Rule = {
   name: string
-  noOfEmojis: number
-  filters?: { [number: number]: (emoji: EmojiObject) => boolean }
+  filters?: { [number: number]: Filter }
   layout: number[][]
 }
 
-const isPerson = (emoji: EmojiObject) => emoji.category < 2
-
 const rules: Rule[] = [
   {
-    name: "Marras",
-    noOfEmojis: 6,
-    filters: { 5: isPerson },
+    name: "basic-1",
+    filters: { 5: subject },
     layout: [
       [0, 1, 0, 1, 0],
-      [1, 2, 3, 2, 1],
+      [1, 2, 4, 2, 1],
       [0, 4, 5, 4, 0],
       [1, 2, 4, 2, 1],
       [0, 1, 0, 1, 0],
     ],
   },
+  // {
+  //   name: "harvey",
+  //   filters: { 6: subject },
+  //   layout: [
+  //     [0, 1, 2, 1, 0],
+  //     [1, 3, 4, 3, 1],
+  //     [0, 5, 6, 5, 0],
+  //     [1, 3, 7, 3, 1],
+  //     [0, 1, 8, 1, 0],
+  //   ],
+  // },
   {
-    name: "Harvey",
-    noOfEmojis: 9,
-    filters: { 6: isPerson },
+    name: "basic-2",
+    filters: { 5: subject },
     layout: [
-      [0, 1, 2, 1, 0],
-      [1, 3, 4, 3, 1],
-      [0, 5, 6, 5, 0],
-      [1, 3, 7, 3, 1],
-      [0, 1, 8, 1, 0],
+      [0, 1, 6, 1, 0],
+      [1, 2, 4, 2, 1],
+      [6, 4, 5, 4, 6],
+      [1, 2, 4, 2, 1],
+      [0, 1, 6, 1, 0],
     ],
   },
+  {
+    name: "basic-3",
+    filters: { 5: subject },
+    layout: [
+      [0, 1, 6, 1, 0],
+      [1, 2, 3, 2, 1],
+      [6, 4, 5, 4, 6],
+      [1, 2, 3, 2, 1],
+      [0, 1, 6, 1, 0],
+    ],
+  },
+  {
+    name: "basic-4",
+    filters: { 5: subject },
+    layout: [
+      [0, 1, 6, 1, 0],
+      [2, 0, 4, 0, 2],
+      [6, 4, 5, 4, 6],
+      [2, 0, 4, 0, 2],
+      [0, 1, 6, 1, 0],
+    ],
+  },
+  // {
+  //   name: "symmetry-lg",
+  //   layout: [
+  //     [2, 4, 2, 1, 2, 4, 2],
+  //     [4, 0, 1, 6, 1, 0, 4],
+  //     [2, 1, 2, 4, 2, 1, 2],
+  //     [1, 6, 4, 5, 4, 6, 1],
+  //     [2, 1, 2, 4, 2, 1, 2],
+  //     [4, 0, 1, 6, 1, 0, 4],
+  //     [2, 4, 2, 1, 2, 4, 2],
+  //   ],
+  // },
+  {
+    name: "maybegray-1",
+    filters: { 5: subject },
+    layout: [
+      [1, 0, 3, 0, 2],
+      [0, 6, 4, 6, 0],
+      [3, 4, 5, 4, 3],
+      [0, 6, 4, 6, 0],
+      [2, 0, 3, 0, 1],
+    ],
+  },
+  {
+    name: "maybegray-2",
+    filters: { 5: subject },
+    layout: [
+      [1, 7, 3, 7, 2],
+      [0, 6, 4, 6, 0],
+      [3, 4, 5, 4, 3],
+      [0, 6, 4, 6, 0],
+      [2, 7, 3, 7, 1],
+    ],
+  },
+  // {
+  //   name: "maybegray-3",
+  //   filters: { 5: subject },
+  //   layout: [
+  //     [1, 0, 3, 0, 2],
+  //     [0, 6, 0, 6, 0],
+  //     [7, 0, 5, 0, 8],
+  //     [0, 6, 0, 6, 0],
+  //     [2, 0, 9, 0, 1],
+  //   ],
+  // },
+  // {
+  //   name: "creepy",
+  //   filters: { 0: background },
+  //   layout: [
+  //     [0, 0, 0, 0, 0, 0, 0],
+  //     [0, 1, 0, 0, 0, 2, 0],
+  //     [0, 0, 0, 0, 0, 0, 0],
+  //     [0, 0, 0, 3, 0, 0, 0],
+  //     [0, 0, 0, 0, 0, 0, 0],
+  //     [0, 4, 0, 0, 0, 5, 0],
+  //     [0, 0, 0, 0, 0, 0, 0],
+  //   ],
+  // },
+  // {
+  //   name: "winding",
+  //   filters: { 0: background, 1: activity },
+  //   layout: [
+  //     [0, 0, 2, 0, 0, 0, 3, 0, 0, 0, 4],
+  //     [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
+  //     [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+  //     [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0],
+  //     [5, 0, 0, 0, 6, 0, 0, 0, 7, 0, 0],
+  //   ],
+  // },
 ]
 
 export default rules

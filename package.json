@@ -18,9 +18,10 @@
     "eslint": "^7.18.0"
   },
   "scripts": {
-    "test": "npm run build && node lib/generateSigil.test.js",
-    "build": "tsc",
-    "poast": "npm run build && node lib/index.js"
+    "test-sigil": "node test-out/test/generateSigil.test.js ",
+    "build-test": "tsc --outDir test-out",
+    "build": "rm -rf out && tsc",
+    "poast": "node out"
   },
   "keywords": [],
   "author": "",
