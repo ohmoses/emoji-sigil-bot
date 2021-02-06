@@ -965,13 +965,13 @@ const emojiAll = [
     category: "Smileys & Emotion",
     subcategory: "emotion",
   },
-  {
-    code: "U+1F441 U+FE0F U+200D U+1F5E8 U+FE0F",
-    emoji: "👁️‍🗨️",
-    name: "eye in speech bubble",
-    category: "Smileys & Emotion",
-    subcategory: "emotion",
-  },
+  // {
+  //   code: "U+1F441 U+FE0F U+200D U+1F5E8 U+FE0F",
+  //   emoji: "👁️‍🗨️",
+  //   name: "eye in speech bubble",
+  //   category: "Smileys & Emotion",
+  //   subcategory: "emotion",
+  // },
   {
     code: "U+1F5E8",
     emoji: "🗨",
