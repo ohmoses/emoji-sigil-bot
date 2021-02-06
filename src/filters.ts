@@ -23,8 +23,6 @@ const faceGroups: GroupName[] = [
   "face-concerned",
   "face-negative",
   "face-costume",
-  // "cat-face",
-  // "monkey-face",
   "person",
   "person-gesture",
   "person-role",
